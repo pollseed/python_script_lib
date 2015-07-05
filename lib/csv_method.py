@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import sys
 import csv
 
@@ -5,6 +7,14 @@ USAGE = 'Usage: python [--read <file>] [--insert <file> <insert_word>]'
 IDXERR_MESSAGE = lambda x: 'Index error: {0}'.format(x)
 IOERR_MESSAGE = lambda x: 'I/O error: {0}'.format(x)
 
+'''
+Usage python -r <file> -i <file> <word>
+
+・CSVファイルを読み込む時は
+    '-r'オプション＋ファイル名を引数として与えて下さい。
+・CSVファイルとしてファイルを上書きする時は
+    '-i'オプション＋ファイル名＋上書き文字を引数として与えて下さい。
+'''
 def option_parser():
     argv = sys.argv
     if len(argv) == 1:
