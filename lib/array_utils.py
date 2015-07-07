@@ -1,3 +1,5 @@
+
+# 指定された配列を交互に格納し、返却する.
 def union(arr1, arr2):
     result = []
     for i in range(1, len(arr1)):
