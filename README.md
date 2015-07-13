@@ -7,3 +7,8 @@ pythonのスクリプト集
 .
 └── lib/~~.py
 
+## env
+|thing|version|
+|:--:|:--:|
+|Python|3.4.3|
+|Vim|7.4|
