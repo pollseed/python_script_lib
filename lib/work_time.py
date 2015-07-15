@@ -1,6 +1,12 @@
+# -*- coding: utf-8 -*-
 from datetime import datetime as dt
 from datetime import date as d
 
+"""
+python work_time.py
+What time is working end time of {__day of the week__}?
+Plerase your today's working-end hour >>>
+"""
 class WorkTime(object):
         DAY_OF_THE_WEEK = {0:"monday",1:"tuesday",2:"wednesday",3:"thursday",4:"friday",5:"satarday",6:"sunday"}
         HOUR = 60
