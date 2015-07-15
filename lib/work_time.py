@@ -29,7 +29,10 @@ class WorkTime(object):
                 raise Exception('0 > input value and now-time')
 
     def get_time(self,hour):
-        rest = (lambda x: round(float(((hour - x.hour) * self.ONE_HOUR - x.minute) / self.ONE_HOUR), 3))(dt.now())
+        rest = (lambda x: round(
+            float(
+                ((hour - x.hour) * self.ONE_HOUR - x.minute) / self.ONE_HOUR)
+            , 3))(dt.now())
         print('lasttime :{0}h'.format(hour))
         print('resttime :{0}h'.format(rest))
 
