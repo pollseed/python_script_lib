@@ -15,9 +15,9 @@ class WorkTime(object):
                 for k,v in self.DAY_OF_THE_WEEK.items():
                         if k == weekday:
                                 print('What time is working end time of {0}?'.format(v))
-                                time = int(input())
-                                if time > 0 and time > dt.now().hour:
-                                        return time
+                                ending_time = int(input())
+                                if ending_time > 0 and ending_time > dt.now().hour:
+                                        return ending_time
                                 raise Exception('0 > input value and now-time')
 
         def get_time(self,hour):
