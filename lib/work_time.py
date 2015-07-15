@@ -8,8 +8,16 @@ What time is working end time of {__day of the week__}?
 Plerase your today's working-end hour >>>
 """
 class WorkTime(object):
-    DAY_OF_THE_WEEK = {0:"monday",1:"tuesday",2:"wednesday",3:"thursday",4:"friday",5:"satarday",6:"sunday"}
-    HOUR = 60
+    DAY_OF_THE_WEEK = {
+            0: "monday",
+            1: "tuesday",
+            2: "wednesday",
+            3: "thursday",
+            4: "friday",
+            5: "satarday",
+            6: "sunday"
+            }
+    ONE_HOUR = 60
 
     def set_value(self,weekday):
         for k,v in self.DAY_OF_THE_WEEK.items():
@@ -21,7 +29,7 @@ class WorkTime(object):
                 raise Exception('0 > input value and now-time')
 
     def get_time(self,hour):
-        rest = (lambda x: round(float(((hour - x.hour) * self.HOUR - x.minute) / self.HOUR), 3))(dt.now())
+        rest = (lambda x: round(float(((hour - x.hour) * self.ONE_HOUR - x.minute) / self.ONE_HOUR), 3))(dt.now())
         print('lasttime :{0}h'.format(hour))
         print('resttime :{0}h'.format(rest))
 
