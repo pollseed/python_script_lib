@@ -14,4 +14,4 @@ class WorkTime(object):
                 self.get_time(self.LAST_HOUR[str(d.today().weekday())])
 
 if __name__ == '__main__':
-        Work()
+        WorkTime()
