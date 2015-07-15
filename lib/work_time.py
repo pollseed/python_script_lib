@@ -18,7 +18,7 @@ class WorkTime(object):
                                 time = int(input())
                                 if time > 0 and time > dt.now().hour:
                                         return time
-                                raise Exception('0 > input value, and now-time')
+                                raise Exception('0 > input value and now-time')
 
         def get_time(self,hour):
                 rest = (lambda x: round(float(((hour - x.hour) * self.HOUR - x.minute) / self.HOUR), 3))(dt.now())
