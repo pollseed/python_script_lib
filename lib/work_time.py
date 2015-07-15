@@ -6,7 +6,7 @@ class WorkTime(object):
         HOUR = 60
 
         def get_time(self,hour):
-                rest = (lambda x: float(((hour - x.hour) * self.HOUR - x.minute) / self.HOUR))(dt.now())
+                rest = (lambda x: round(float(((hour - x.hour) * self.HOUR - x.minute) / self.HOUR), 3))(dt.now())
                 print('lasttime :{0}h'.format(hour))
                 print('resttime :{0}h'.format(rest))
 
