@@ -22,8 +22,9 @@ class WorkTime(object):
     def set_value(self,weekday):
         for k,v in self.DAY_OF_THE_WEEK.items():
             if k == weekday:
-                print('What time is working end time of {0}?'.format(v))
-                ending_time = int(input())
+                #print('What time is working end time of {0}?'.format(v))
+                ending_time = int(input(
+                            'What time is working end time of {0}? > '.format(v)))
                 if ending_time > 0 and ending_time > dt.now().hour:
                     return ending_time
                 raise Exception('0 > input value and now-time')
@@ -33,7 +34,6 @@ class WorkTime(object):
             float(
                 ((hour - x.hour) * self.ONE_HOUR - x.minute) / self.ONE_HOUR)
             , 3))(dt.now())
-        print('lasttime :{0}h'.format(hour))
         print('resttime :{0}h'.format(rest))
 
     def __init__(self):
