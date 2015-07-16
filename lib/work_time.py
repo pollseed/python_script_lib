@@ -22,11 +22,16 @@ class WorkTime(object):
     def set_value(self,weekday):
         for k,v in self.DAY_OF_THE_WEEK.items():
             if k == weekday:
-                ending_time = float(input(
-                            'What time is working end time of {0}? > '.format(v)))
-                if ending_time > 0 and ending_time > dt.now().hour:
-                    return ending_time
-                raise Exception('0 > input value and now-time')
+                ending_time = 0
+                try:
+                    ending_time = float(input(
+                                'What time is working end time of {0}? > '.format(v)))
+                    if ending_time > 0 and ending_time > dt.now().hour:
+                        return ending_time
+                    raise ValueError('0 > input value and now-time')
+                except ValueError as e:
+                    print('[{0}]\n'.format(e), 'Please enter again!')
+                    return self.set_value(weekday)
 
     def get_time(self,hour):
         rest = (lambda x: round(
