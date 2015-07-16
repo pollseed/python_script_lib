@@ -21,6 +21,8 @@ class WorkTime(object):
             }
     ONE_HOUR = 60
 
+    ANSWER = ('y','yes','n','no')
+
     def get_ending_hour(self,weekday):
         for k,v in self.DAY_OF_THE_WEEK.items():
             if k == weekday:
@@ -37,9 +39,9 @@ class WorkTime(object):
     def get_break_time(self):
         try:
             break_time = input('Do you have a break?(y/n)')
-            if break_time != 'y' and break_time != 'n':
+            if break_time not in self.ANSWER:
                 raise ValueError('only use \'y\' or \'n\'')
-            return 1 if break_time == 'y' else 0
+            return 1 if break_time in ('y','yes') else 0
         except ValueError as e:
             self.__print_error(e)
             return self.get_break_time()
