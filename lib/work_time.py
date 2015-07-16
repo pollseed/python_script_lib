@@ -21,8 +21,6 @@ class WorkTime(object):
             }
     ONE_HOUR = 60
 
-    ERR_MSG = lambda x: '[{0}]\nPlease enter again!'.format(x)
-
     def set_value(self,weekday):
         for k,v in self.DAY_OF_THE_WEEK.items():
             if k == weekday:
@@ -33,7 +31,7 @@ class WorkTime(object):
                         return ending_time
                     raise ValueError('0 > input value and now-time')
                 except ValueError as e:
-                    print('[{0}]\n'.format(e), 'Please enter again!')
+                    self.__print_error(e)
                     return self.set_value(weekday)
 
     def get_time(self,hour):
@@ -44,7 +42,7 @@ class WorkTime(object):
                 raise ValueError('only use \'y\' or \'n\'')
             break_time = 1 if break_time == 'y' else 0
         except ValueError as e:
-            print('[{0}]\n'.format(e), 'Please enter again!')
+            self.__print_error(e)
             return self.get_time(hour)
 
         rest = (lambda x: round(
@@ -52,6 +50,9 @@ class WorkTime(object):
                 ((hour - x.hour) * self.ONE_HOUR - x.minute) / self.ONE_HOUR - break_time)
             , 3))(dt.now())
         print('resttime :{0}h'.format(rest))
+
+    def __print_error(self,e):
+        print((lambda x: '[{0}]\nPlease enter again!'.format(x))(e))
 
     def __init__(self):
         self.get_time(self.set_value(d.today().weekday()))
