@@ -14,7 +14,7 @@ class WorkTime(object):
             2: "wednesday",
             3: "thursday",
             4: "friday",
-            5: "satarday",
+            5: "saturday",
             6: "sunday"
             }
     ONE_HOUR = 60
@@ -24,7 +24,7 @@ class WorkTime(object):
             if k == weekday:
                 try:
                     ending_time = float(input(
-                                'What time is working end time of {0}? > '.format(v)))
+                                'What time is working end time of \'{0}\'? > '.format(v)))
                     if ending_time > 0 and ending_time > dt.now().hour:
                         return ending_time
                     raise ValueError('0 > input value and now-time')
