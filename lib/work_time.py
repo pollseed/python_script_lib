@@ -34,18 +34,15 @@ class WorkTime(object):
                     self.__print_error(e)
                     return self.get_ending_hour(weekday)
 
-    def get_break_time(self,hour):
+    def get_break_time(self):
         try:
             break_time = input('Do you have a break?(y/n)')
             if break_time != 'y' and break_time != 'n':
                 raise ValueError('only use \'y\' or \'n\'')
-            return {
-                'break_time': (1 if break_time == 'y' else 0),
-                'ending_hour': hour
-                }
+            return 1 if break_time == 'y' else 0
         except ValueError as e:
             self.__print_error(e)
-            return self.get_break_time(hour)
+            return self.get_break_time()
 
     def get_time(self,hour,break_time):
         print('resttime :{0}h'.format(
@@ -57,8 +54,7 @@ class WorkTime(object):
         print((lambda x: '[{0}]\nPlease enter again!'.format(x))(e))
 
     def __init__(self):
-        time = self.get_break_time(self.get_ending_hour(d.today().weekday()))
-        self.get_time(time['ending_hour'], time['break_time'])
+        self.get_time(self.get_ending_hour(d.today().weekday()), self.get_break_time())
 
 if __name__ == '__main__':
     WorkTime()
