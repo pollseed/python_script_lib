@@ -6,6 +6,8 @@ from datetime import date as d
 python work_time.py
 What time is working end time of {__day of the week__}?
 Plerase your today's working-end hour >>>
+
+Is accepted as a positive number only input value
 """
 class WorkTime(object):
     DAY_OF_THE_WEEK = {
