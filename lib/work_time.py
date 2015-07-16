@@ -22,7 +22,6 @@ class WorkTime(object):
     def set_value(self,weekday):
         for k,v in self.DAY_OF_THE_WEEK.items():
             if k == weekday:
-                ending_time = 0
                 try:
                     ending_time = float(input(
                                 'What time is working end time of {0}? > '.format(v)))
