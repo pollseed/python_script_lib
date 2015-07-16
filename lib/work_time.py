@@ -39,9 +39,9 @@ class WorkTime(object):
     def get_break_time(self):
         try:
             break_time = input('Do you have a break?(y/n)')
-            if break_time not in self.ANSWER:
-                raise ValueError('only use \'y\' or \'n\'')
-            return 1 if break_time in ('y','yes') else 0
+            if break_time in self.ANSWER:
+                return 1 if break_time in ('y','yes') else 0
+            raise ValueError('only use \'y\' or \'n\'')
         except ValueError as e:
             self.__print_error(e)
             return self.get_break_time()
