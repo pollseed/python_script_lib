@@ -45,11 +45,10 @@ class WorkTime(object):
             self.__print_error(e)
             return self.get_time(hour)
 
-        rest = (lambda x: round(
-            float(
+        print('resttime :{0}h'.format(
+            (lambda x: round(float(
                 ((hour - x.hour) * self.ONE_HOUR - x.minute) / self.ONE_HOUR - break_time)
-            , 3))(dt.now())
-        print('resttime :{0}h'.format(rest))
+            , 3))(dt.now())))
 
     def __print_error(self,e):
         print((lambda x: '[{0}]\nPlease enter again!'.format(x))(e))
