@@ -21,6 +21,8 @@ class WorkTime(object):
             }
     ONE_HOUR = 60
 
+    ERR_MSG = lambda x: '[{0}]\nPlease enter again!'.format(x)
+
     def set_value(self,weekday):
         for k,v in self.DAY_OF_THE_WEEK.items():
             if k == weekday:
@@ -35,9 +37,19 @@ class WorkTime(object):
                     return self.set_value(weekday)
 
     def get_time(self,hour):
+        break_time = ''
+        try:
+            break_time = input('Do you have a break?(y/n)')
+            if break_time != 'y' and break_time != 'n':
+                raise ValueError('only use \'y\' or \'n\'')
+            break_time = 1 if break_time == 'y' else 0
+        except ValueError as e:
+            print('[{0}]\n'.format(e), 'Please enter again!')
+            return self.get_time(hour)
+
         rest = (lambda x: round(
             float(
-                ((hour - x.hour) * self.ONE_HOUR - x.minute) / self.ONE_HOUR)
+                ((hour - x.hour) * self.ONE_HOUR - x.minute) / self.ONE_HOUR - break_time)
             , 3))(dt.now())
         print('resttime :{0}h'.format(rest))
 
