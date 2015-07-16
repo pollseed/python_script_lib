@@ -21,7 +21,7 @@ class WorkTime(object):
             }
     ONE_HOUR = 60
 
-    def set_value(self,weekday):
+    def get_ending_hour(self,weekday):
         for k,v in self.DAY_OF_THE_WEEK.items():
             if k == weekday:
                 try:
@@ -32,19 +32,22 @@ class WorkTime(object):
                     raise ValueError('0 > input value and now-time')
                 except ValueError as e:
                     self.__print_error(e)
-                    return self.set_value(weekday)
+                    return self.get_ending_hour(weekday)
 
-    def get_time(self,hour):
-        break_time = ''
+    def get_break_time(self,hour):
         try:
             break_time = input('Do you have a break?(y/n)')
             if break_time != 'y' and break_time != 'n':
                 raise ValueError('only use \'y\' or \'n\'')
-            break_time = 1 if break_time == 'y' else 0
+            return {
+                'break_time': (1 if break_time == 'y' else 0),
+                'ending_hour': hour
+                }
         except ValueError as e:
             self.__print_error(e)
-            return self.get_time(hour)
+            return self.get_break_time(hour)
 
+    def get_time(self,hour,break_time):
         print('resttime :{0}h'.format(
             (lambda x: round(float(
                 ((hour - x.hour) * self.ONE_HOUR - x.minute) / self.ONE_HOUR - break_time)
@@ -54,7 +57,8 @@ class WorkTime(object):
         print((lambda x: '[{0}]\nPlease enter again!'.format(x))(e))
 
     def __init__(self):
-        self.get_time(self.set_value(d.today().weekday()))
+        time = self.get_break_time(self.get_ending_hour(d.today().weekday()))
+        self.get_time(time['ending_hour'], time['break_time'])
 
 if __name__ == '__main__':
     WorkTime()
