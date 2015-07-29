@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>work_time</title>
+  <script src="jquery-1.11.3.min.js"></script>
+  <script src="./work_time.js"></script>
+</head>
+<body>
+  <p>
+  <section>
+    <form name="frm1" id="frm1" action="">
+      <p>
+        <span>end time >> </span>
+        <input type="number" name="end_hour" placeholder="please input end hour" value="19">
+        <span>:</span>
+        <input type="number" name="end_minutes" placeholder="please input end minutes" value="0">
+      </p>
+      <p>
+        <span>rest time >> </span>
+        <input type="number" name="rest_hour" placeholder="please input rest hour" value="1">
+        <span>:</span>
+        <input type="number" name="rest_minutes" placeholder="please input rest minutes" value="0">
+      </p>
+      <p>
+        <span>remaining time >> </span>
+        <span name="remaining_time"></span>
+      </p>
+      <p>
+        <input type="button" onclick="get_remaining_time()" value="arithmetic">
+      </p>
+    </form>
+  </section>
+  </p>
+</body>
+</html>
