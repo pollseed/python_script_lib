@@ -2,8 +2,18 @@
 <html>
 <head>
   <title>work_time</title>
-  <script src="jquery2.js"></script>
-  <script src="/lib/js/work_time.js"></script>
+  <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+  <script type="text/javascript" src="./work_time.js"></script>
+  <script type="text/javascript">
+
+  // get remaining time from Time class
+  function get_remaining_time() {
+    var time = new Time($("input[name='rest_hour']").val(), $("input[name='rest_minutes']").val());
+    var remain = time.remaining($("input[name='end_hour']").val(), $("input[name='end_minutes']").val());
+    $("span[name='remaining_time']").text(remain.remaining_hour + ":" + remain.remaining_minutes);
+  }
+
+  </script>
 </head>
 <body>
   <p>
