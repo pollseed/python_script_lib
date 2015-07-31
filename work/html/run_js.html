@@ -4,6 +4,7 @@
   <title>work_time</title>
   <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
   <script type="text/javascript" src="./work_time.js"></script>
+  <script type="text/javascript" src="./local_storage.js"></script>
   <script type="text/javascript">
 
   // get remaining time from Time class
@@ -12,6 +13,23 @@
     var remain = time.remaining($("input[name='end_hour']").val(), $("input[name='end_minutes']").val());
     $("span[name='remaining_time']").text(remain.remaining_hour + ":" + remain.remaining_minutes);
   }
+  
+  
+  function hoge() {
+    var k = ["hoge"];
+    var v = ["fuga"];
+
+    var key = ["hoge", "fuga"];
+    var value = ["hoge_value", "fuga_value"];
+    var ls = new LocalStorage();
+    // ls.normal.save(k, v);
+    // console.log(ls.normal.get("hoge"));
+    ls.ex.saveAll(key, value);
+    console.log(ls.base.get("hoge"));
+    console.log(ls.base.get("fuga"));
+  }
+  
+  hoge();
 
   </script>
 </head>
