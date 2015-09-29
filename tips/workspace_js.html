@@ -1,0 +1,65 @@
+ <html>$
+ <head>$
+ <meta charset="UTF-8">$
+ <title>practice_workspace</title>$
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/primer/2.0.2/primer.css">$
+ <style>$
+ body {$
+ ^Imargin: 10px 10px 10px 10px;$
+ }$
+ div#word_result {$
+ ^Iwhite-space: pre;$
+ }$
+ div.form {$
+ ^Imargin: 5px 0px 5px 0px;$
+ }$
+ span.form {$
+ ^Imargin: 0px 10px 0px 0px;$
+ }$
+ </style>$
+ </head>$
+ <body>$
+ <div>$
+ ^I<form action="">$
+ ^I^I<div class="form">$
+ ^I^I^I<span class="form">word</span>$
+ ^I^I^I<input type="text" id="word" value="" placeholder="please input word" />$
+ ^I^I^I<div id="word_result">&nbsp;</div>$
+ ^I^I</div>$
+ ^I^I<div class="form">$
+ ^I^I^I<span class="form">test</span>$
+ ^I^I^I<input type="text" />$
+ ^I^I</div>$
+ ^I</form>$
+ </div>$
+ <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>$
+ <script>$
+ "use strict";$
+ $
+ const ERROR_CODE_BLANK = -1;$
+ $
+ function getInputWord() {$
+ ^Ilet word = document.getElementById("word");$
+ ^Iif (word.value === "") {$
+ ^I^Iconsole.info(`not blank, errorCode [${ERROR_CODE_BLANK}]`);$
+ ^I^Ireturn ERROR_CODE_BLANK;$
+ ^I}$
+ ^Ireturn word.value;$
+ }$
+ $
+ function init() {$
+ ^Ilet result = document.getElementById("word_result"),$
+       word = getInputWord();$
+ ^Iif (ERROR_CODE_BLANK === word) {$
+ ^I^Ireturn;$
+ ^I}$
+ ^Iresult.innerText = word;$
+ }$
+ function load() {$
+ ^Ilet input_word = document.getElementById("word");$
+ ^Iinput_word.addEventListener('blur', init, false);$
+ }$
+ document.addEventListener('DOMContentLoaded', load, false);$
+ </script>$
+ </body>$
+ </html>$
