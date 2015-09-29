@@ -21,7 +21,7 @@ span.form {
                 <div class="form">
                         <span class="form">word</span>
                         <input type="text" id="word" value="" placeholder="please input word" />
-                        <div id="word_result">&nbsp;</div>
+                        <div id="word_result"> </div>
                 </div>
                 <div class="form">
                         <span class="form">test</span>
@@ -33,38 +33,39 @@ span.form {
 <script>
 "use strict";
 
-const ERROR_CODE_BLANK = -1;
+const ERROR_CODE_BLANK = -1,
+      SPACE = ' ';
 
 class Dom {
         constructor(id) {
                 this._id = document.getElementById(id);
         }
+        getIdDom() {
+                return this._id;
+        }
+        isNotEquals(text) {
+                return this.getIdDom().innerText !== text;
+        }
 }
 
 class InputDom extends Dom {
-        getInputDom() {
-                return this._id;
-        }
         getInputValue() {
-                let value = this.getInputDom().value;
+                let value = this.getIdDom().value;
                 if (value === "") {
                         console.info(`not blank, errorCode [${ERROR_CODE_BLANK}]`);
                         return ERROR_CODE_BLANK;
                 }
                 return value;
         }
-        isNotEquals(text) {
-                return this._id.innerText !== text;
-        }
 }
 
 function init() {
         let wordResultDom = new InputDom("word_result"),
-      result = wordResultDom.getInputDom(),
+      result = wordResultDom.getIdDom(),
       wordDom = new InputDom("word"),
       word = wordDom.getInputValue();
         if (ERROR_CODE_BLANK === word) {
-                return;
+                result.innerText = SPACE;
         } else if (wordDom.isNotEquals(word)) {
                 result.innerText = word;
         }
