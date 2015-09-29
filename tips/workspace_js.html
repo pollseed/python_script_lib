@@ -50,7 +50,7 @@ class Dom {
 
 class InputDom extends Dom {
         getInputValue() {
-                let value = this.getIdDom().value;
+                let value = super.getIdDom().value;
                 if (value === "") {
                         console.info(`not blank, errorCode [${ERROR_CODE_BLANK}]`);
                         return ERROR_CODE_BLANK;
