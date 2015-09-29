@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>practice_workspace</title>
+<html><head><meta charset="UTF-8"><title>practice_workspace</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/primer/2.0.2/primer.css">
 <style>
 body {
@@ -17,8 +14,7 @@ div.form {
 span.form {
         margin: 0px 10px 0px 0px;
 }
-</style>
-</head>
+</style></head>
 <body>
 <div>
         <form action="">
@@ -39,22 +35,35 @@ span.form {
 
 const ERROR_CODE_BLANK = -1;
 
-function getInputWord() {
-        let word = document.getElementById("word");
-        if (word.value === "") {
-                console.info(`not blank, errorCode [${ERROR_CODE_BLANK}]`);
-                return ERROR_CODE_BLANK;
+class Dom {
+        constructor(id) {
+                this._id = document.getElementById(id);
         }
-        return word.value;
+}
+
+class InputDom extends Dom {
+        getInputValue() {
+                let value = this._id.value;
+                if (value === "") {
+                        console.info(`not blank, errorCode [${ERROR_CODE_BLANK}]`);
+                        return ERROR_CODE_BLANK;
+                }
+                return value;
+        }
+        isNotEquals(text) {
+                return this._id.innerText !== text;
+        }
 }
 
 function init() {
         let result = document.getElementById("word_result"),
-      word = getInputWord();
+      inputDom = new InputDom("word"),
+      word = inputDom.getInputValue();
         if (ERROR_CODE_BLANK === word) {
                 return;
+        } else if (inputDom.isNotEquals(word)) {
+                result.innerText = word;
         }
-        result.innerText = word;
 }
 function load() {
         let input_word = document.getElementById("word");
@@ -62,5 +71,4 @@ function load() {
 }
 document.addEventListener('DOMContentLoaded', load, false);
 </script>
-</body>
-</html>
+</body></html>
