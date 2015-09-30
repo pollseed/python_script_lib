@@ -29,12 +29,27 @@ span.form {
                 </div>
         </form>
 </div>
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<!--<script src="/socket.io/socket.io.js"></script>-->
 <script>
 "use strict";
 
-const ERROR_CODE_BLANK = -1,
+const /*IO, = io(), */
+      ERROR_CODE_BLANK = -1,
       SPACE = ' ';
+
+let Request = {
+                        get: (url, query) => {
+                                let defer = $.Deferred();
+                                $.ajax( {
+                                        url: url + query,
+        //                              dataType: 'jsonp',
+                                        type: 'GET',
+                                        success: defer.resolve,
+                                        error: defer.reject
+                                });
+                                return defer.promise();
+            }};
 
 class Dom {
         constructor(id) {
@@ -88,11 +103,22 @@ function init() {
         } else if (wordDom.isNotEquals(word)) {
                 result.innerText = word;
         }
+//      IO.emit('server', word);
         request = new RequestUrls();
         yahooUrl = request.getUrl('YAHOO', word);
         githubUrl = request.getUrl('GITHUB', word);
         stackoverflowUrl = request.getUrl('STACKOVERFLOW', word);
         console.info(`request url : \r\n${yahooUrl}\r\n${githubUrl}\r\n${stackoverflowUrl}`);
+
+        Request.get(yahooUrl, word).done(data => {
+                console.log(data);
+        });
+        Request.get(githubUrl, word).done(data => {
+                console.log(data);
+        });
+        Request.get(stackoverflowUrl, word).done(data => {
+                console.log(data);
+        });
 }
 function load() {
         let input_word = document.getElementById("word");
