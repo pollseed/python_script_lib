@@ -75,15 +75,15 @@ function ajaxRequest() {
         stackoverflowUrl = request.getUrl('STACKOVERFLOW', word);
         console.info(`request url : \r\n${yahooUrl}\r\n${githubUrl}\r\n${stackoverflowUrl}`);
 
-        Request.get(yahooUrl, word).done(data => {
-                console.log(data);
-        });
-        Request.get(githubUrl, word).done(data => {
-                console.log(data);
-        });
-        Request.get(stackoverflowUrl, word).done(data => {
-                console.log(data);
-        });
+        Request.get(yahooUrl, word)
+                .done(data => { console.log(data) })
+                .fail(e => { console.log(e) });
+        Request.get(githubUrl, word)
+                .done(data => { console.log(data) })
+                .fail(e => { console.log(e) });
+        Request.get(stackoverflowUrl, word)
+                .done(data => { console.log(data) })
+                .fail(e => { console.log(e) });
 }
 
 class Timer {
