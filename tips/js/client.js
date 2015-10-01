@@ -41,14 +41,14 @@ class InputDom extends Dom {
 
 class RequestUrls {
         constructor() {
-                this._urls = new Map();
-                this._urls.set('YAHOO', 'http://search.yahoo.co.jp/search?p=');
-                this._urls.set('GITHUB', 'https://github.com/search?utf8=✓&q=');
-                this._urls.set('STACKOVERFLOW', 'http://stackoverflow.com/search?q=');
-                this._urls.set('NONE', '');
+                this.__urls = new Map()
+                        .set('YAHOO', 'http://search.yahoo.co.jp/search?p=')
+                        .set('GITHUB', 'https://github.com/search?utf8=✓&q=')
+                        .set('STACKOVERFLOW', 'http://stackoverflow.com/search?q=')
+                        .set('NONE', '');
         }
         getUrl(serviceName, searchWord) {
-                let url = this._urls.get(serviceName);
+                let url = this.__urls.get(serviceName);
                 return url + searchWord;
         }
 }
@@ -85,8 +85,38 @@ function init() {
                 console.log(data);
         });
 }
+
+class Timer {
+        constructor() {
+                this.__times = new Map()
+                        .set(1, [17,45])
+                        .set(2, [17,45])
+                        .set(3, [17,45])
+                        .set(4, [17,45])
+                        .set(5, [17,45])
+                        .set(6, [0])
+                        .set(7, [0]);
+        }
+        getRemainTime() {
+                let d = new Date(),
+                now = this.__times.get(d.getDay()),
+                hour = now[0] - d.getHours(),
+                        minute = now[1] - d.getMinutes();
+                if (minute < 0) {
+                        hour--;
+                        minute+=60;
+                }
+                return { hour: hour, minute: minute };
+        }
+}
+function click() {
+        let resultDom = new InputDom("remain_result").getIdDom(),
+        remain = new Timer("remain_time").getRemainTime();
+        resultDom.innerText = `${remain.hour} : ${remain.minute}`;
+}
+
 function load() {
-        let input_word = document.getElementById("word");
-        input_word.addEventListener('blur', init, false);
+        new InputDom("word").getIdDom().addEventListener('blur', init, false);
+        new InputDom("remain_time").getIdDom().addEventListener('click', click, false);
 }
 document.addEventListener('DOMContentLoaded', load, false);
