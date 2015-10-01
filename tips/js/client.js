@@ -53,7 +53,7 @@ class RequestUrls {
         }
 }
 
-function init() {
+function ajaxRequest() {
         let wordResultDom = new InputDom("word_result"),
         result = wordResultDom.getIdDom(),
         wordDom = new InputDom("word"),
@@ -109,14 +109,13 @@ class Timer {
                 return { hour: hour, minute: minute };
         }
 }
-function click() {
-        let resultDom = new InputDom("remain_result").getIdDom(),
-        remain = new Timer("remain_time").getRemainTime();
-        resultDom.innerText = `${remain.hour} : ${remain.minute}`;
-}
 
 function load() {
-        new InputDom("word").getIdDom().addEventListener('blur', init, false);
-        new InputDom("remain_time").getIdDom().addEventListener('click', click, false);
+        new InputDom("word").getIdDom().addEventListener('blur', ajaxRequest, false);
+        new InputDom("remain_time").getIdDom().addEventListener('click', () => {
+                let resultDom = new InputDom("remain_result").getIdDom(),
+                remain = new Timer("remain_time").getRemainTime();
+                resultDom.innerText = `${remain.hour} : ${remain.minute}`;
+        }, false);
 }
 document.addEventListener('DOMContentLoaded', load, false);
