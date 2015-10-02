@@ -106,8 +106,8 @@
         }
         getRemainTime() {
             let d = new Date(),
-            now = this.__times.get(d.getDay()),
-            hour = now.hour - d.getHours(),
+                now = this.__times.get(d.getDay()),
+                hour = now.hour - d.getHours(),
                 minute = now.minute - d.getMinutes();
             if (minute < 0) { hour--; minute+=60; }
             return { hour: hour, minute: minute };
