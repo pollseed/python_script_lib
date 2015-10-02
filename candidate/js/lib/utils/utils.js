@@ -1,7 +1,7 @@
 (function() {
     "use strict";
 
-    const ERROR_CODE_BLANK = -1;
+    const BLANK_CHR = [" ", "　"], ERROR_CODE_BLANK = -1;
 
     let StringUtils = {
         isEmpty: str => {
@@ -12,7 +12,6 @@
             return !isEmpty(str);
         },
         isBlank: str => {
-            const BLANK_CHR = [" ", "　"];
             let __str = __parseStr(str),
             strLen = __str.length,
                 i,
