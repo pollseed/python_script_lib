@@ -92,7 +92,7 @@ class Timer {
             .set(2, {hour: 17, minute: 45})
             .set(3, {hour: 17, minute: 45})
             .set(4, {hour: 17, minute: 45})
-            .set(5, {hour: 19, minute: 0})
+            .set(5, {hour: 17, minute: 45)
             .set(6, {hour: 0, minute: 0})
             .set(7, {hour: 0, minute: 0});
     }
