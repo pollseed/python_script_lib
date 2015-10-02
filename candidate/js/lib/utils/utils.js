@@ -1,6 +1,8 @@
 (function() {
     "use strict";
 
+    const ERROR_CODE_BLANK = -1;
+
     let StringUtils = {
         isEmpty: str => {
             let __str = __parseStr(str);
@@ -54,6 +56,44 @@
         return `${str}`;
     }
 
+    class Dom {
+        constructor(id) {
+            this._id = document.getElementById(id);
+        }
+        getIdDom() {
+            return this._id;
+        }
+        isNotEquals(text) {
+            return this.getIdDom().innerText !== text;
+        }
+    }
+
+    class InputDom extends Dom {
+        getInputValue() {
+            let value = super.getIdDom().value;
+            if (StringUtils.isBlank(value)) {
+                console.info(`not blank, errorCode [${ERROR_CODE_BLANK}]`);
+                return ERROR_CODE_BLANK;
+            }
+            return value;
+        }
+    }
+
+    class RequestUrls {
+        constructor() {
+            this.__urls = new Map()
+                .set('YAHOO', 'http://search.yahoo.co.jp/search?p=')
+                .set('GITHUB', 'https://github.com/search?utf8=✓&q=')
+                .set('STACKOVERFLOW', 'http://stackoverflow.com/search?q=')
+                .set('NONE', '');
+        }
+        getUrl(serviceName, searchWord) {
+            let url = this.__urls.get(serviceName);
+            return url + searchWord;
+        }
+    }
+
+
     class Timer {
         constructor() {
             this.__times = new Map()
@@ -75,7 +115,10 @@
         }
     }
 
+    this.ERROR_CODE_BLANK = ERROR_CODE_BLANK;
     this.StringUtils = StringUtils;
+    this.InputDom = InputDom;
+    this.RequestUrls = RequestUrls;
     this.Timer = Timer;
 
 }).call(this);
