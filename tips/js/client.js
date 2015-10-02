@@ -1,9 +1,7 @@
 (function() {
     "use strict";
 
-    const IO = io(),
-    ERROR_CODE_BLANK = -1,
-        SPACE = ' ';
+    const IO = io(), SPACE = ' ';
 
     let Request = {
         get: (url, query) => {
@@ -16,43 +14,6 @@
             });
             return defer.promise();
         }};
-
-    class Dom {
-        constructor(id) {
-            this._id = document.getElementById(id);
-        }
-        getIdDom() {
-            return this._id;
-        }
-        isNotEquals(text) {
-            return this.getIdDom().innerText !== text;
-        }
-    }
-
-    class InputDom extends Dom {
-        getInputValue() {
-            let value = super.getIdDom().value;
-            if (StringUtils.isBlank(value)) {
-                console.info(`not blank, errorCode [${ERROR_CODE_BLANK}]`);
-                return ERROR_CODE_BLANK;
-            }
-            return value;
-        }
-    }
-
-    class RequestUrls {
-        constructor() {
-            this.__urls = new Map()
-                .set('YAHOO', 'http://search.yahoo.co.jp/search?p=')
-                .set('GITHUB', 'https://github.com/search?utf8=✓&q=')
-                .set('STACKOVERFLOW', 'http://stackoverflow.com/search?q=')
-                .set('NONE', '');
-        }
-        getUrl(serviceName, searchWord) {
-            let url = this.__urls.get(serviceName);
-            return url + searchWord;
-        }
-    }
 
     function ajaxRequest() {
         let wordResultDom = new InputDom("word_result"),
