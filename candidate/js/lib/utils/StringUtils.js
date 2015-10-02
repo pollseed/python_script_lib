@@ -36,11 +36,23 @@
         trimToNull: str => {
             let __str = this.trim(str);
             return (__str === null) || (__str.length === 0) ? null : __str;
+        },
+
+            /*
+             * create number of str element array.
+             * @param str element.
+             * @limit number of array.
+             */
+        createPlaceholder: (str, limit) => {
+            let __str = `${str},`,
+            placeholder = __str.repeat(limit).split(',');
+            placeholder.pop();
+            return placeholder;
         }
     };
 
     function __parseStr(str) {
-        return ''+str;
+        return `${str}`;
     }
 
     this.StringUtils = StringUtils;
