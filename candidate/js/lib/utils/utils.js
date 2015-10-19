@@ -114,10 +114,39 @@
         }
     }
 
+    class Sql {
+        constructor(tblName) {
+            this.__tblName = tblName;
+        }
+        createInsert(columnNames, values_array) {
+            if (columnNames === null || columnNames === undefined
+                    || values_array === null || values_array === undefined) return false;
+            let sql_column = '', sql_value = '', sqls = [], i = 0, j = 0;
+            columnNames.forEach(v => {
+                if (i !== 0) sql_column += ',';
+                sql_column += v;
+                i++;
+            });
+            values_array.forEach(values => {
+                values.forEach(v => {
+                    if (j !== 0) sql_value += ',';
+                    sql_value += v;
+                    j++;
+                });
+                sqls.push(`insert into ${this.__tblName} (${sql_column}) values (${sql_value});`);
+                j = 0;
+                sql_value = '';
+            });
+            return sqls;
+        }
+    }
+
+
     this.ERROR_CODE_BLANK = ERROR_CODE_BLANK;
     this.StringUtils = StringUtils;
     this.InputDom = InputDom;
     this.RequestUrls = RequestUrls;
     this.Timer = Timer;
+    this.Sql = Sql;
 
 }).call(this);
