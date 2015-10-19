@@ -51,18 +51,12 @@
      */
     function createSql() {
         let sql = new Sql('item'),
-        column_names = ['name', 'buy_date'],
-        values = [],
-            valuesArray = [],
-            i, sqls = [];
+        valuesArray = [], i;
 
         for (i = 0; i < 100; i++) {
-            let name_value = `"product${i}"`;
-            values = [name_value, 'now()'];
-            valuesArray.push(values);
+            valuesArray.push([`"product${i}"`, 'now()']);
         }
-        sqls = sql.createInsert(column_names, valuesArray);
-        sqls.forEach(v => console.log(v));
+        sql.createInsert(['name', 'buy_date'], valuesArray).forEach(v => console.log(v));
     }
 
     function load() {
