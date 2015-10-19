@@ -45,6 +45,26 @@
             .fail(e => { console.log(e) });
     }
 
+    /**
+     * ex.)
+     * itemテーブルにname,buy_dateカラムに値を突っ込んだレコードを100件追加する場合
+     */
+    function createSql() {
+        let sql = new Sql('item'),
+        column_names = ['name', 'buy_date'],
+        values = [],
+            valuesArray = [],
+            i, sqls = [];
+
+        for (i = 0; i < 100; i++) {
+            let name_value = `"product${i}"`;
+            values = [name_value, 'now()'];
+            valuesArray.push(values);
+        }
+        sqls = sql.createInsert(column_names, valuesArray);
+        sqls.forEach(v => console.log(v));
+    }
+
     function load() {
         new InputDom("word").getIdDom().addEventListener('blur', ajaxRequest, false);
         new InputDom("remain_time").getIdDom().addEventListener('click', () => {
