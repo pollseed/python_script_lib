@@ -50,9 +50,7 @@
      * itemテーブルにname,buy_dateカラムに値を突っ込んだレコードを100件追加する場合
      */
     function createSql() {
-        let sql = new Sql('item'),
-        valuesArray = [], i;
-
+        let sql = new Sql('item'), valuesArray = [], i;
         for (i = 0; i < 100; i++) {
             valuesArray.push([`"product${i}"`, 'now()']);
         }
