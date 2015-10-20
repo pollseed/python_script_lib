@@ -1,0 +1,21 @@
+{
+  "name": "node-tips",
+  "version": "0.0.1",
+  "private": true,
+  "author": "pollseed",
+  "lisence": "MIT",
+  "dependencies": {
+      "express": "*",
+      "express-session": "*",
+      "socket.io": "*",
+      "request": "*",
+      "log4js": "*"
+    },
+  "engines": {
+      "node": "*",
+      "npm": "*"
+    },
+  "scripts": {
+      "start": "node app.js"
+    }
+}
