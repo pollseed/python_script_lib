@@ -6,36 +6,46 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/primer/2.0.2/primer.css">
 <style>
 body {
-        margin: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
 }
 div#word_result {
-        white-space: pre;
+    white-space: pre;
 }
 div.form {
-        margin: 5px 0px 5px 0px;
+    margin: 5px 0px 5px 0px;
 }
 span.form {
-        margin: 0px 10px 0px 0px;
+    margin: 0px 10px 0px 0px;
 }
 </style>
 </head>
 <body>
 <div>
-        <form action="">
-                <div class="form">
-                        <span class="form">word</span>
-                        <input type="text" id="word" value="" placeholder="please input word" />
-                        <div id="word_result"> </div>
-                </div>
-                <div class="form">
-                        <span class="form">remain</span>
-                        <input type="button" id="remain_time" value="remain?" />
-                        <div class="form">remain time → <span id="remain_result"> </span></div>
-                </div>
-        </form>
+    <form action="">
+        <div class="form">
+            <span class="form">word</span>
+            <input type="text" id="word" value="" placeholder="please input word" />
+            <div id="word_result"> </div>
+        </div>
+        <div class="form">
+            <span class="form">remain</span>
+            <input type="button" id="remain_time" value="remain?" />
+            <div class="form">remain time → <span id="remain_result"> </span></div>
+        </div>
+        <div class="form">
+            <span class="form">sql</span>
+            <input type="number" id="sqlCount" value="" placeholder="please sql count" />
+            <input type="text" id="tableName" value="" placeholder="please table name" />
+            <input type="text" id="ai_column" value="" placeholder="increment column name" />
+            <textarea name="columnNames" id="columnNames" rows="4" cols="40" placeholder="please input column name"></textarea>
+            <textarea name="values" id="values" rows="4" cols="40" placeholder="please input values"></textarea>
+            <input type="button" id="createInsert" value="create insert" />
+        </div>
+    </form>
 </div>
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
+<script src="js/util.js"></script>
 <script src="js/client.js"></script>
 </body>
 </html>
