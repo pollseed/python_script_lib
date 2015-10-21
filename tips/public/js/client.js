@@ -48,15 +48,18 @@
         sqlCount = new InputDom("sqlCount").getInputValue(),
         ai_column = new InputDom("ai_column").getInputValue(),
             values = new InputDom("values").getInputValue().split(','),
-            sql = new Sql(new InputDom("tableName").getInputValue()), valuesArray = [], __tmpValues = [], i;
+            sql = new Sql(new InputDom("tableName").getInputValue()),
+                isSingleSql = new InputDom("isSingleSql").getIdDom().checked,
+                valuesArray = [], __tmpValues = [], i;
         for (i = 0; i < sqlCount; i++) {
             __tmpValues.push(`"${ai_column}${i}"`);
             values.forEach(v => __tmpValues.push(v));
             valuesArray.push(__tmpValues);
             __tmpValues = [];
         }
-        sql.createInsert(columnNames, valuesArray).forEach(v => console.log(v));
+        sql.createInsert(columnNames, valuesArray, isSingleSql).forEach(v => console.log(v));
     }
+
 
     function load() {
         new InputDom("word").getIdDom().addEventListener('blur', ajaxRequest, false);
