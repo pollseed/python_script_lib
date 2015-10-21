@@ -39,7 +39,12 @@ span.form {
             <input type="text" id="ai_column" value="" placeholder="increment column name" />
             <textarea name="columnNames" id="columnNames" rows="4" cols="40" placeholder="please input column name"></textarea>
             <textarea name="values" id="values" rows="4" cols="40" placeholder="please input values"></textarea>
+            <label for="isSingleSql" accesskey="s">SingleSQL</label>
+            <input name="isSingleSql" label="isSingleSql" type="radio" id="isSingleSql" value=true />
+            <label for="isMultiSql" accesskey="m">MultiSQL</label>
+            <input name="isSingleSql" label="isSingleSql" type="radio" id="isMultiSql" value=false checked />
             <input type="button" id="createInsert" value="create insert" />
+
         </div>
     </form>
 </div>
