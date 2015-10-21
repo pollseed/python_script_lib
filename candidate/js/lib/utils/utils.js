@@ -111,10 +111,23 @@
     }
 
     class Sql {
+        /**
+         * テーブル名を指定してください.
+         */
         constructor(tblName) {
             this.__tblName = tblName;
         }
-        createInsert(columnNames, values_array) {
+
+        /**
+         * 指定された条件でinsert文を生成します.
+         *
+         * @param {Array.<string>} columnNames カラム名の配列
+         * @param {Array.<string>} values_array 挿入値レコードの配列(*insert文の生成数用意して下さい)
+         * @param {Boolean} isSingleSql シングル文にする場合 {@code true} にして下さい
+         * @return {string} insert文
+         *
+         */
+        createInsert(columnNames, values_array, isSingleSql) {
             if (columnNames === null || columnNames === undefined
                     || values_array === null || values_array === undefined) return false;
             let sql_column = '', sql_value = '', sqls = [], i = 0, j = 0;
@@ -129,13 +142,28 @@
                     sql_value += v;
                     j++;
                 });
-                sqls.push(`insert into ${this.__tblName} (${sql_column}) values (${sql_value});`);
+                if (isSingleSql) {
+                    sqls.push(sql_value);
+                } else {
+                    sqls.push(`insert into ${this.__tblName} (${sql_column}) values (${sql_value});`);
+                }
                 j = 0;
                 sql_value = '';
             });
+            if (isSingleSql) {
+                let sql = '', k = 0;
+                sqls.forEach(v => {
+                    if (k !== 0) sql += ',';
+                    sql += `(${v})`;
+                    k++;
+                });
+                sqls = [];
+                sqls.push(`insert into ${this.__tblName} (${sql_column}) values ${sql};`);
+            }
             return sqls;
         }
     }
+
 
     this.ERROR_CODE_BLANK = ERROR_CODE_BLANK;
     this.StringUtils = StringUtils;
