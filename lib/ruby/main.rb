@@ -6,7 +6,7 @@ class MainExecute
     attr_accessor :u
 
     def initialize
-        @u = Util.instance
+        @u = Util::RubyPractice.instance
     end
 
     def main
