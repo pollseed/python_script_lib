@@ -20,7 +20,17 @@ class MainExecute < MainGenerator
     end
 
     def bubble_sort
-        pp BubbleSort.new.sort [54,23,0,3,89,210,20,1,23,567,90]
+        r = ->(a,b,c){(rand(1..1000)*10*a*b-b) <<c}
+        test = []
+        (100).times {|v|
+            if v % 15 == 0 then test[v] = r.call 15,v,3
+            elsif v % 3 == 0 then test[v] = r.call 3,v,10
+            elsif v % 5 == 0 then test[v] = r.call 5,v,7
+            else test[v] = r.call 1,v,2
+            end
+        }
+        pp BubbleSort.new.sort test
+        self
     end
 
     def c
