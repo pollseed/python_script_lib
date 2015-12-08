@@ -12,7 +12,7 @@ class BubbleSort
                 else
                     ai += 1
                 end
-                (->v{is_loop=false if ai==v-1}).call len
+                is_loop=false if ai==len-1
             }
         end
         arr
