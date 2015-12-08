@@ -1,18 +1,20 @@
+require 'pp'
+require 'yaml'
 require './lib/util'
 
-class MainExecute
-    ARR = [1,2,3]
-
-    attr_accessor :u
-
+class MainGenerator
     def initialize
         @u = Util::RubyPractice.instance
     end
 
+    ARR = [1,2,3]
+end
+
+class MainExecute < MainGenerator
     def main
-        p @u.time
+        pp @u.time
         @u.p ARR
-        p @u.sum ARR
+        pp @u.sum ARR
     end
 end
 
