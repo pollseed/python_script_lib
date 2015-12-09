@@ -8,12 +8,15 @@ module Util
             Time.new
         end
 
-        def p vs
-            (-> vs{vs.each{|v|puts v}}).call vs
+        def p _
+            # 書き方がいくつかある
+            #(->_{_.map{|_|puts _}}).call _
+            #_.map &method(:puts)
+            _.map &:puts.to_proc.curry(2).call(Kernel)
         end
 
-        def sum vs
-            a=0;(-> vs{vs.each{|v|a+=v}}).call vs;a
+        def sum _
+            a=0;(->_{_.map{|_|a+=_}}).call _;a
         end
     end
 end
