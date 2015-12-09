@@ -30,18 +30,18 @@ class MainExecute < MainGenerator
     end
 
     private
-    def create_test_arr l
+    def create_test_arr _
         test = []
-        (l).times{|v|test[v]=fizzbuzz v}
+        (_).times{|_|test[_]=fizzbuzz_sim _}
         test
     end
 
-    def fizzbuzz v
-        r = ->a,b,c{(rand(1..1000)*10*a*b-b) <<c}
-        if v % 15 == 0 then r.call 15,v,3
-        elsif v % 3 == 0 then r.call 3,v,10
-        elsif v % 5 == 0 then r.call 5,v,7
-        else r.call 1,v,2
+    def fizzbuzz_sim _
+        r=->a,b,c{(rand(1..1000)*10*a*b-b) <<c}
+        if _%15==0 then r.call 15,_,3
+        elsif _%3==0 then r.call 3,_,10
+        elsif _%5==0 then r.call 5,_,7
+        else r.call 1,_,2
         end
     end
 end
